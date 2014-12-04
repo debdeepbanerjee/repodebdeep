@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2.11/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">  
+    <!-- Appenders -->
+               <appender name="console" class="org.apache.log4j.ConsoleAppender">
+                              <param name="Target" value="System.out" />
+                              <param name="immediateFlush" value="false"/>
+                              <param name="MaxFileSize" value="1000000KB"/>
+        <param name="MaxBackupIndex" value="5"/>
+                              <layout class="org.apache.log4j.PatternLayout">
+<!--                                      <param name="ConversionPattern" value="%-5p [%c{1}] %m%n" /> -->
+                                             <param name="ConversionPattern" value="%t: %d{ISO8601} - %-5p session:%X{sessionId} guid:%X{guid} - %l - %m%n" />
+                              </layout>
+               </appender>
+              
+               <appender name="ROLLINGFILE.TRACE" class="org.apache.log4j.FileAppender">
+                             <param name="Threshold" value="TRACE" />
+                              <param name="File" value="/logs/mipayments/MIPaymentsTrace.log" />
+                              <param name="Append" value="true" />
+                              <param name="DatePattern" value="'-'yyyy-MM-dd'.log'" />
+                              <param name="immediateFlush" value="false"/>
+                              <param name="MaxFileSize" value="1000000KB"/>
+        <param name="MaxBackupIndex" value="5"/>
+                              <layout class="org.apache.log4j.PatternLayout">
+<!--                                      <param name="ConversionPattern" value="%t: %d{ISO8601} - %-5p - %l - %m%n" /> -->
+                                             <param name="ConversionPattern" value="%t: %d{ISO8601} - %-5p session:%X{sessionId} guid:%X{guid} - %l - %m%n" />
+                              </layout>
+               </appender>
+              
+               <appender name="AsyncAppender" class="org.apache.log4j.AsyncAppender">
+                   <!--
+                        Logging performance can be optimised by setting LocationInfo to
+                        false, but you will lose location info if you do that. See
+                        http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/AsyncAppender.html
+                     -->
+                   <param name="LocationInfo" value="true"/>
+                   <param name="Blocking" value="false"/>
+                              <param name="BufferSize" value="2000"/>
+                              <param name="Threshold" value="TRACE"/>
+                              <param name="immediateFlush" value="false"/>
+                              <param name="MaxFileSize" value="1000000KB"/>
+        <param name="MaxBackupIndex" value="5"/>
+                   <appender-ref ref="ROLLINGFILE.TRACE"/>
+               </appender>
+              
+<logger name="com.springmvcpoc" additivity="false">
+                              <level value="DEBUG" />
+                              <appender-ref ref="ROLLINGFILE.TRACE" /> 
+                              <appender-ref ref="console" />
+   </logger>
+ 
+ 
+               <!-- Third-party loggers -->
+               <logger name="org.springframework.web" additivity="false">
+                              <level value="DEBUG" />
+                              <appender-ref ref="AsyncAppender"/>
+               </logger>
+   
+               <!-- Third-party loggers -->
+<!--        <logger name="org.springframework.web"> -->
+<!--                       <level value="info" /> -->
+<!--        </logger> -->
+               <!-- Root logger -->
+               <root>
+                              <priority value="INFO" />
+                              <appender-ref ref="AsyncAppender"/>
+               </root>
+</log4j:configuration>

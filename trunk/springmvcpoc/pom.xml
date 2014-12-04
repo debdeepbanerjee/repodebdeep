@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+               <modelVersion>4.0.0</modelVersion>
+              
+ 
+               <groupId>com.americanexpress.springmvcpoc</groupId>
+               <artifactId>springmvcpoc</artifactId>
+               <packaging>war</packaging>
+               <name>springmvcpoc</name>
+ 
+               <properties>
+                              <java-version>1.6</java-version>
+                              <org.springframework-version>3.2.4.RELEASE</org.springframework-version>
+                              <start-class>com.springmvcpoc.config.WebConfig</start-class>
+                              <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+               </properties>
+ 
+               <dependencyManagement>
+                              <dependencies>
+                                             <dependency>
+                                                            <groupId>xml-apis</groupId>
+                                                            <artifactId>xml-apis</artifactId>
+                                                            <version>1.4.01</version>
+                                             </dependency>
+                              </dependencies>
+               </dependencyManagement>
+ 
+               <dependencies>
+                              <dependency>
+                                             <groupId>junit</groupId>
+                                             <artifactId>junit</artifactId>
+                                             <version>4.11</version>
+                                             <scope>test</scope>
+                              </dependency>
+                             
+                              <dependency>
+                                             <groupId>com.googlecode.xmemcached</groupId>
+                                             <artifactId>xmemcached</artifactId>
+                                             <version>2.0.0</version>
+                              </dependency>
+                              <dependency>
+                                             <groupId>org.seleniumhq.selenium</groupId>
+                                             <artifactId>selenium-java</artifactId>
+                                             <version>2.43.1</version>
+                                             <scope>test</scope>
+                              </dependency>
+                              <dependency>
+                                             <groupId>org.seleniumhq.selenium</groupId>
+                                             <artifactId>selenium-htmlunit-driver</artifactId>
+                                             <version>2.43.1</version>
+                                             <scope>test</scope>
+                              </dependency>
+                              <dependency>
+                                             <groupId>com.github.detro.ghostdriver</groupId>
+                                             <artifactId>phantomjsdriver</artifactId>
+                                             <version>1.1.0</version>
+                                             <exclusions>
+ 
+                                                            <exclusion>
+                                                                           <groupId>org.seleniumhq.selenium</groupId>
+                                                                           <artifactId>selenium-remote-driver</artifactId>
+                                                            </exclusion>
+                                                            <exclusion>
+                                                                           <groupId>org.seleniumhq.selenium</groupId>
+                                                                           <artifactId>selenium-java</artifactId>
+                                                            </exclusion>
+                                                            <exclusion>
+                                                                           <groupId>org.seleniumhq.selenium</groupId>
+                                                                           <artifactId>selenium-server</artifactId>
+                                                            </exclusion>
+                                             </exclusions>
+ 
+                                             <scope>test</scope>
+                              </dependency>
+                              <dependency>
+                                             <groupId>org.springframework</groupId>
+                                             <artifactId>spring-context</artifactId>
+                                             <version>${org.springframework-version}</version>
+                                             <exclusions>
+                                                            <exclusion>
+                                                                           <groupId>commons-logging</groupId>
+                                                                           <artifactId>commons-logging</artifactId>
+                                                            </exclusion>
+                                             </exclusions>
+                              </dependency>
+                              <dependency>
+                                             <groupId>org.springframework</groupId>
+                                             <artifactId>spring-webmvc</artifactId>
+                                             <version>${org.springframework-version}</version>
+                              </dependency>
+                              <dependency>
+                                             <groupId>org.springframework</groupId>
+                                             <artifactId>spring-context-support</artifactId>
+                                             <version>${org.springframework-version}</version>
+                              </dependency>
+                              <dependency>
+                                             <groupId>org.springframework</groupId>
+                                             <artifactId>spring-jdbc</artifactId>
+                                             <version>${org.springframework-version}</version>
+                              </dependency>
+                             
+                              <dependency>
+                                             <groupId>rhino</groupId>
+                                             <artifactId>js</artifactId>
+                                             <version>1.7R2</version>
+                                             <scope>compile</scope>
+                              </dependency>
+                              <dependency>
+                                             <groupId>com.google.code.gson</groupId>
+                                             <artifactId>gson</artifactId>
+                                             <version>2.2.4</version>
+                              </dependency>
+                              <dependency>
+                                             <groupId>com.fasterxml.jackson.core</groupId>
+                                             <artifactId>jackson-core</artifactId>
+                                             <version>2.1.5</version>
+                              </dependency>
+                              <dependency>
+                                             <groupId>com.fasterxml.jackson.core</groupId>
+                                             <artifactId>jackson-databind</artifactId>
+                                             <version>2.1.5</version>
+                              </dependency>
+                              <dependency>
+                                             <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                                             <artifactId>jackson-jaxrs-json-provider</artifactId>
+                                             <version>2.0.0</version>
+                              </dependency>
+ 
+ 
+                              <!-- CGLIB, required for @Configuration usage -->
+                              <dependency>
+                                             <groupId>cglib</groupId>
+                                             <artifactId>cglib-nodep</artifactId>
+                                             <version>2.2</version>
+                              </dependency>
+ 
+                              <!-- Servlet API -->
+                              <dependency>
+                                             <groupId>javax.servlet</groupId>
+                                             <artifactId>servlet-api</artifactId>
+                                             <version>2.5</version>
+                                             <scope>provided</scope>
+                              </dependency>
+ 
+                              <dependency>
+                                             <groupId>commons-fileupload</groupId>
+                                             <artifactId>commons-fileupload</artifactId>
+                                             <version>1.2.2</version>
+                              </dependency>
+                              <!-- Apache Commons IO -->
+                              <dependency>
+                                             <groupId>commons-io</groupId>
+                                             <artifactId>commons-io</artifactId>
+                                             <version>1.3.2</version>
+                              </dependency>
+                              <dependency>
+                                             <groupId>org.slf4j</groupId>
+                                             <artifactId>jcl-over-slf4j</artifactId>
+                                             <version>1.6.6</version>
+                              </dependency>
+                              <dependency>
+                                             <groupId>org.slf4j</groupId>
+                                             <artifactId>slf4j-log4j12</artifactId>
+                                             <version>1.7.6</version>
+                              </dependency>
+                              <dependency>
+                                             <groupId>commons-codec</groupId>
+                                             <artifactId>commons-codec</artifactId>
+                                             <version>1.8</version>
+                              </dependency>
+ 
+                             
+ 
+ 
+               </dependencies>
+ 
+               <build>
+              
+        <plugins>
+        <plugin>
+                                                            <artifactId>maven-antrun-plugin</artifactId>
+                                                           
+                                             </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                </configuration>
+            </plugin>
+          
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                </plugin>
+ 
+           
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/features/**/*.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.16</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <stopPort>8005</stopPort>
+                    <stopKey>STOP</stopKey>
+                    <contextPath>/springmvcpoc</contextPath>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run-exploded</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+              
+              
+                              <finalName>springmvcpoc</finalName>
+               </build>
+ 
+</project>
